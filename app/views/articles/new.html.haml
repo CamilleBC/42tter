@@ -1,0 +1,14 @@
+= form_with scope: :article, url: articles_path, local: true do |f|%
+  %title 
+  %p
+    = f.label :title
+    %br
+    = f.text_area :title
+
+  %p
+    = f.label :text
+    %br
+    = f.text_area :text
+
+    %p
+      = f.submit

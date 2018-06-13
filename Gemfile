@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
@@ -63,4 +65,4 @@ gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
 # USER DEFINED GEMS
 # Use haml for views
-gem 'haml-rails', '>= 5.0.4'
+gem 'haml-rails', '>= 1.0.0'
