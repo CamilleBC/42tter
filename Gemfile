@@ -66,3 +66,4 @@ gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 # USER DEFINED GEMS
 # Use haml for views
 gem 'haml-rails', '>= 1.0.0'
+gem 'twitter-bootstrap-rails', '>= 4.0.0'
