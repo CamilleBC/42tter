@@ -6,4 +6,6 @@ class User < ApplicationRecord
   validates :email, confirmation: true, length: { in: 4..150 }
   validates :email_confirmation, presence: true, length: { in: 4..150 }
   validates_format_of :email, with: /\A[^@\s]+@([^@\s]+\.)+[^@\s]+\z/
+
+  has_many :messages
 end

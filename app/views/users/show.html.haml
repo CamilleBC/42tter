@@ -1,0 +1,15 @@
+%h1 User Profile
+%h2 Personal Data:
+%p
+  %strong User name: 
+  = @user.user_name
+  %br
+  %strong Full name: 
+  = @user.full_name
+
+%p
+  %strong Email: 
+  = @user.email
+
+%h2 Type of Account:
+= @user.rights
