@@ -9,12 +9,17 @@ class MessagesController < ApplicationController
     @message = Message.find(params[:id])
   end
 
-  def new; end
+  def new
+    @message = Message.new
+  end
 
   def create
     @message = Message.new(message_params)
-    @message.save
-    redirect_to @message
+    if @message.save
+      redirect_to @message
+    else
+      render 'new'
+    end
   end
 
   def update
