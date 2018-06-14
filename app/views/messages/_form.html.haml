@@ -1,0 +1,22 @@
+= form_with model:@message, local: true do |f|
+  - if @message.errors.any?
+    #error_explanation
+      %h2
+        = pluralize(@message.errors.count, "error") 
+        prohibited this article from being saved:
+      %ul
+        - @message.errors.full_messages.each do |error_message|
+          %li
+            = error_message
+
+  %title New message
+  %p
+    %strong Header
+
+  %p
+    = f.label :body
+    %br
+    = f.text_area :body
+
+  %p
+    = f.submit
