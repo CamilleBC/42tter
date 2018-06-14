@@ -1,0 +1,12 @@
+%h1 Messages' List:
+%table
+  %tr
+    %th User
+    %th Body
+    %th Link to message
+
+  - @messages.each do |message|
+    %tr
+      %td User Placeholder
+      %td= message.body
+      %td= link_to 'Show', message_path(message)

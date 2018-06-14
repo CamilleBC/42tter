@@ -1,6 +1,10 @@
 # frozen_string_literal: true
 
 class MessagesController < ApplicationController
+  def index
+    @messages = Message.all
+  end
+
   def show
     @message = Message.find(params[:id])
   end
@@ -11,6 +15,11 @@ class MessagesController < ApplicationController
     @message = Message.new(message_params)
     @message.save
     redirect_to @message
+  end
+
+  def update
+    @message = Message.find(params[:id])
+    @message.save
   end
 
   private
