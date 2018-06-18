@@ -12,7 +12,7 @@ Topic to learn:
 * Having fun!
 
 
-##Roadmap
+## Roadmap
 * [X] Create basic routes and CRUD methods for the 2 models
 * [ ] Create a basic timeline on the index to display all user message
 * [ ] Create a basic functionnal profile system with rights
