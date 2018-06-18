@@ -32,6 +32,13 @@
       = f.email_field :email_confirmation
 
   %p
+    %strong
+      = f.label :password
+      %br
+      = f.password_field :password
+      %br
+      = f.password_field :password_confirmation
+  %p
     = f.submit
 
 

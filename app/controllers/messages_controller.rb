@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class MessagesController < ApplicationController
-  before_action :find_message, only: %i[show edit update destroy]
+  before_action :find_message, only: %i[show edit update destroy hide]
 
   def index
     @messages = Message.all
@@ -24,18 +24,23 @@ class MessagesController < ApplicationController
 
   def update
     @user = User.find(params[:user_id])
-    @message = User.messages.find(params[:id])
     if @message.update(message_params)
       redirect_to @user
     else
-      render 'edit'
+      render :edit
     end
   end
 
   def destroy
     @user = User.find(params[:user_id])
     @message.destroy
-    redirect_to user_path(@user)
+    redirect_to @user
+  end
+
+  def hide
+    @message.body = 'message deleted by user'
+    @message.save
+    redirect_to @message.user
   end
 
   private

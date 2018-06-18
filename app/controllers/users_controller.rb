@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'digest/sha1'
+
 class UsersController < ApplicationController
   before_action :find_user, only: %i[show edit update destroy]
 
@@ -7,7 +9,9 @@ class UsersController < ApplicationController
     @users = User.all
   end
 
-  def show; end
+  def show
+    @messages = @user.messages.order(created_at: :desc)
+  end
 
   def new
     @user = User.new
@@ -18,8 +22,12 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
+      flash[:notice] = 'Successful login'
+      flash[:color] = 'valid'
       redirect_to @user
     else
+      flash[:notice] = 'Invalid login attempt'
+      flash[:color] = 'invalid'
       render 'new'
     end
   end
@@ -44,6 +52,6 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:full_name, :user_name, :email, :email_confirmation)
+    params.require(:user).permit(:full_name, :user_name, :email, :email_confirmation, :password, :password_confirmation)
   end
 end
