@@ -1,7 +1,6 @@
 %p
   %strong User: 
-  %br
-  Placeholder
+  = @message.user.user_name
 
 %p
   %strong Creation:
@@ -13,4 +12,5 @@
 
 %p
   %strong Message: 
+  %br
   = @message.body

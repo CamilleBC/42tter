@@ -7,11 +7,11 @@
 
   - @messages.each do |message|
     %tr
-      %td User Placeholder
+      %td= @user.user_name 
       %td= message.body
-      %td= link_to 'Show', message_path(message)
-      %td= link_to 'Edit', edit_message_path(message)
-      %td= link_to 'Destroy', message_path(message), 
+      %td= link_to 'Show', user_message_path(@user, message)
+      %td= link_to 'Edit', edit_user_message_path(@user, message)
+      %td= link_to 'Delete', user_message_path(@user, message), 
         method: :delete, 
         data: {confirm: 'Are you sure you want to destroy this message?',
         class: 'btn btn-danger'}

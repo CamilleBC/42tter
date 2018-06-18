@@ -1,4 +1,4 @@
-= form_with model:@message, local: true do |f|
+= form_with scope: @message, url: user_messages_path, local: true do |f|
   - if @message.errors.any?
     #error_explanation
       %h2
@@ -11,7 +11,8 @@
 
   %title New message
   %p
-    %strong Header
+    %strong by:
+    = @message.user
 
   %p
     = f.label :body

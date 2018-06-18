@@ -5,6 +5,7 @@ class MessagesController < ApplicationController
 
   def index
     @messages = Message.all
+    @user = User.find(params[:user_id])
   end
 
   def show; end
@@ -16,25 +17,25 @@ class MessagesController < ApplicationController
   def edit; end
 
   def create
-    @message = Message.new(message_params)
-    if @message.save
-      redirect_to @message
-    else
-      render 'new'
-    end
+    @user = User.find(params[:user_id])
+    @message = @user.messages.create(message_params)
+    redirect_to user_path(@user)
   end
 
   def update
+    @user = User.find(params[:user_id])
+    @message = User.messages.find(params[:id])
     if @message.update(message_params)
-      redirect_to @message
+      redirect_to @user
     else
       render 'edit'
     end
   end
 
   def destroy
+    @user = User.find(params[:user_id])
     @message.destroy
-    redirect_to messages_path
+    redirect_to user_path(@user)
   end
 
   private
