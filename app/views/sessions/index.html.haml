@@ -1,6 +1,6 @@
 %title Login
-  %h1 Log in
-= form_with url: session_path, local: true do |f|
+%h1 Log in
+= form_with local: true do |f|
   %p
     = f.label :username_or_email
     %br
@@ -12,4 +12,4 @@
     = f.text_field :login_password
 
   %p
-    = f.submmit
+    = f.submit

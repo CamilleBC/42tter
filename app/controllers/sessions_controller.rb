@@ -21,7 +21,7 @@ class SessionsController < ApplicationController
       render 'index'
     else
       flash[:notice] = "Welcome back, #{authorized_user.username}."
-      redirect_to @authorized_user
+      redirect_to authorized_user
     end
   end
 

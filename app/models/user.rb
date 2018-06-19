@@ -18,14 +18,24 @@ class User < ApplicationRecord
   has_many :messages
 
   def self.authenticate(username_or_email = '', login_password = '')
-    user = if valid_email?(email)
+    user = if User.valid_email?(username_or_email)
              User.find_by_email(username_or_email)
            else
              User.find_by_username(username_or_email)
            end
     return nil if user.nil?
     return nil unless user.match_password?(login_password)
+    puts user
     user
+  end
+
+  def self.valid_email?(email)
+    return true if email.match(EMAIL_REGEXP)
+    false
+  end
+
+  def match_password?(login_password)
+    encrypted_password == Digest::SHA1.hexdigest("Adding #{salt} to #{login_password}")
   end
 
   private
@@ -42,14 +52,5 @@ class User < ApplicationRecord
     return unless password.present?
     self.salt = Digest::SHA1.hexdigest("We add #{email} as unique value and #{Time.now} as random value")
     self.encrypted_password = Digest::SHA1.hexdigest("Adding #{salt} to #{password}")
-  end
-
-  def match_password?(login_password)
-    encrypted_password == Digest::SHA1.hexdigest("Adding #{salt} to #{login_password}")
-  end
-
-  def valid_email?(email)
-    return true if email.match(EMAIL_REGEXP)
-    false
   end
 end
