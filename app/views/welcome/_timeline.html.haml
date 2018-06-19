@@ -3,7 +3,9 @@
   %p
     = message.created_at
     %br
-    = succeed ':' do
-      = succeed link_to message.user.user_name, user_path(message.user) do
-        @
+    
+    - if message.user.active
+      = succeed ':' do
+        = succeed link_to message.user.username, user_path(message.user) do
+          @
     = message.body

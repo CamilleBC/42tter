@@ -38,8 +38,7 @@ class MessagesController < ApplicationController
   end
 
   def hide
-    @message.body = 'message deleted by user'
-    @message.save
+    @message.hide
     redirect_to @message.user
   end
 

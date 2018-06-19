@@ -6,4 +6,9 @@ class Message < ApplicationRecord
   belongs_to :user
   # belongs_to :message
   # has_one :message
+  #
+  def hide
+    self.body = 'message deleted by user'
+    save
+  end
 end

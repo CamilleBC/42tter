@@ -3,7 +3,7 @@
 require 'digest/sha1'
 
 class UsersController < ApplicationController
-  before_action :find_user, only: %i[show edit update destroy]
+  before_action :find_user, only: %i[show edit update destroy hide]
 
   def index
     @users = User.all
@@ -22,11 +22,11 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      flash[:notice] = 'Successful login'
+      flash[:notice] = 'Successful account creation'
       flash[:color] = 'valid'
       redirect_to @user
     else
-      flash[:notice] = 'Invalid login attempt'
+      flash[:notice] = 'Invalid account'
       flash[:color] = 'invalid'
       render 'new'
     end
@@ -41,8 +41,21 @@ class UsersController < ApplicationController
   end
 
   def destroy
+    @user.delete_user_messages
     @user.delete
     redirect_to users_path
+  end
+
+  def hide
+    @user.messages.all.each(&:hide) if @user.messages.any?
+    @user.active = false
+    if @user.save
+      flash.notice = 'Successful account deletion'
+      redirect_to welcome_index_path
+    else
+      flash.alert = 'Could not delete account'
+      redirect_to @user
+    end
   end
 
   private
@@ -52,6 +65,6 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:full_name, :user_name, :email, :email_confirmation, :password, :password_confirmation)
+    params.require(:user).permit(:fullname, :username, :email, :email_confirmation, :password, :password_confirmation)
   end
 end

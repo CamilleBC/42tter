@@ -2,10 +2,10 @@
 %h2 Personal Data:
 %p
   %strong User name: 
-  = @user.user_name
+  = @user.username
   %br
   %strong Full name: 
-  = @user.full_name
+  = @user.fullname
 
 %p
   %strong Email: 
@@ -45,7 +45,7 @@
 %br
 = link_to 'Edit', edit_user_path
 = link_to 'Back', welcome_index_path
-= link_to 'Delete account', user_path(@user),
-  method: :update,
+= link_to 'Delete account', hide_user_path(@user),
+  method: :patch,
   data: {confirm: 'Are you sure you want to delete your account?',
   class: 'btn btn-danger'}
