@@ -22,12 +22,12 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      flash[:notice] = 'Successful account creation'
-      flash[:color] = 'valid'
+      flash.now[:notice] = 'Successful account creation'
+      flash.now[:color] = 'valid'
       redirect_to @user
     else
-      flash[:notice] = 'Invalid account'
-      flash[:color] = 'invalid'
+      flash.now[:notice] = 'Invalid account'
+      flash.now[:color] = 'invalid'
       render 'new'
     end
   end
@@ -50,10 +50,12 @@ class UsersController < ApplicationController
     @user.messages.all.each(&:hide) if @user.messages.any?
     @user.active = false
     if @user.save
-      flash.notice = 'Successful deactivation'
+      flash.now[:notice] = 'Successful deactivation'
+      flash.now[:color] = 'valid'
       redirect_to welcome_index_path
     else
-      flash.alert = 'Could not deactivate account'
+      flash.now[:alert] = 'Could not deactivate account'
+      flash.now[:color] = 'invalid'
       redirect_to @user
     end
   end
