@@ -9,21 +9,23 @@ class SessionsController < ApplicationController
     # session home
   end
 
-  def new; end
+  def new
+    # placeholder
+  end
 
-  def edit; end
+  def edit
+    # placeholder
+  end
 
   def create
     authorized_user = User.authenticate(session_params[:username_or_email], session_params[:login_password])
     if authorized_user.nil?
-      flash.now[:alert] = 'Invalid username or password.'
-      flash.now[:color] = 'invalid'
+      flash.now[:danger] = 'Invalid username or password.'
       @username_or_email = session_params[:username_or_email]
       render 'new'
     else
-      flash.now[:notice] = "Welcome back, #{authorized_user.username}."
-      flash.now[:color] = 'valid'
-      login(authorized_user)
+      flash.now[:success] = "Welcome back, #{authorized_user.username}."
+      log_in(authorized_user)
       redirect_to authorized_user
     end
   end

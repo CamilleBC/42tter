@@ -23,11 +23,9 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       flash.now[:notice] = 'Successful account creation'
-      flash.now[:color] = 'valid'
       redirect_to @user
     else
-      flash.now[:notice] = 'Invalid account'
-      flash.now[:color] = 'invalid'
+      flash.now[:danger] = 'Invalid account'
       render 'new'
     end
   end
@@ -51,11 +49,9 @@ class UsersController < ApplicationController
     @user.active = false
     if @user.save
       flash.now[:notice] = 'Successful deactivation'
-      flash.now[:color] = 'valid'
       redirect_to welcome_index_path
     else
-      flash.now[:alert] = 'Could not deactivate account'
-      flash.now[:color] = 'invalid'
+      flash.now[:danger] = 'Could not deactivate account'
       redirect_to @user
     end
   end
