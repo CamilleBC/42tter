@@ -3,7 +3,7 @@
 require 'digest/sha1'
 
 class UsersController < ApplicationController
-  before_action :find_user, only: %i[show edit update destroy hide]
+  before_action :find_user, only: %i[show edit update destroy deactivate]
 
   def index
     @users = User.all
@@ -46,18 +46,17 @@ class UsersController < ApplicationController
     redirect_to users_path
   end
 
-  def hide
+  def deactivate
     @user.messages.all.each(&:hide) if @user.messages.any?
     @user.active = false
     if @user.save
-      flash.notice = 'Successful account deletion'
+      flash.notice = 'Successful deactivation'
       redirect_to welcome_index_path
     else
-      flash.alert = 'Could not delete account'
+      flash.alert = 'Could not deactivate account'
       redirect_to @user
     end
   end
-
 
   private
 

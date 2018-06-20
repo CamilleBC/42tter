@@ -6,7 +6,7 @@ Rails.application.routes.draw do
 
   resources :sessions
   resources :users do
-    patch 'hide', on: :member
+    patch 'deactivate', on: :member
     resources :messages do
       patch 'hide', on: :member
     end
