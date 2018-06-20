@@ -2,22 +2,4 @@
 %br
 = flash.notice if flash.notice
 
-%title Login
-%h1 Log in
-= form_with scope: :session, method: :post, url: sessions_path, local: true do |f|
-  %p
-    = f.label :username_or_email
-    %br
-    = f.text_field :username_or_email, value: @username_or_email
-
-  %p
-    = f.label :login_password
-    %br
-    = f.password_field :login_password
-
-  %p
-    = f.submit 'Log in', class: 'btn btn-primary'
-
-%p
-  New user?
-  = link_to 'Sign up now!', new_user_path
+= render 'login'

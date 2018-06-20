@@ -1,8 +1,10 @@
 = flash.alert if flash.alert
 = flash.notice if flash.notice
 
+= render 'layouts/header'
 %h1 Welcome to 42tter (forty-two-tter)!
 %h2 If you want to access the next-next-next-next-next-next-next-next-next-next-next-next-next-next-next-next-next-next-next-next-next-next-next-next-next-next-next-next-next-next-next-next-next-next-next-next-next-next-next-next-next-next generation of messenger services, please log-in or subscribe!
 
 %br
-= render 'timeline'
+= render 'layouts/timeline'
+= render 'layouts/footer'

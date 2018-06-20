@@ -1,0 +1,12 @@
+.timeline
+  %h1 This is the timeline, bitch! 
+  - @messages.each do |message|
+    .timeline_element
+      = message.created_at
+      %br
+    
+      - if message.user.active
+        = succeed ':' do
+          = succeed link_to message.user.username, user_path(message.user) do
+            @
+      = message.body
