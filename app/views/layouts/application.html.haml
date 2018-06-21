@@ -13,5 +13,5 @@
     .container
       - flash.each do |message_type, message|
         .alert{class: "alert-#{message_type}"}
-          = message
+          = message.html_safe
       = yield

@@ -1,0 +1,13 @@
+- if defined? parent_id
+  %br
+  Parent ID: 
+  = parent_id
+  %br
+= form_with model: [ current_user, current_user.messages.build ] do |f|
+  .form-inline
+    - if defined? parent_id
+      = f.hidden_field :parent_id, value: parent_id
+    .input-group
+      = f.text_field :body
+    .input-group
+      = f.submit 'Post'

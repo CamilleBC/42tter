@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class MessagesController < ApplicationController
+  before_action :check_logged_status
   before_action :find_message, only: %i[show edit update destroy hide]
 
   def index
@@ -49,6 +50,6 @@ class MessagesController < ApplicationController
   end
 
   def message_params
-    params.require(:message).permit(:body)
+    params.require(:message).permit(:body, :parent, :parent_id)
   end
 end

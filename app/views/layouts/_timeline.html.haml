@@ -1,5 +1,8 @@
 .timeline
   %h1 This is the timeline, bitch! 
+  - if logged_in?
+    %br
+    = render 'messages/form-inline'
   - if @messages.empty?
     I'm so alone...
   - else
@@ -13,3 +16,8 @@
             = succeed link_to message.user.username, user_path(message.user) do
               @
         = message.body
+        - if logged_in?
+          %br
+          = message.id
+          = render partial: 'messages/form-inline', locals: {parent_id: message.id}
+

@@ -3,6 +3,7 @@
 require 'digest/sha1'
 
 class UsersController < ApplicationController
+  before_action :check_logged_status, except: %i[create new]
   before_action :find_user, only: %i[show edit update destroy deactivate]
   before_action only: %i[deactivate destroy edit update] do |c|
     c.send(:authorized?, current_user, params[:id])

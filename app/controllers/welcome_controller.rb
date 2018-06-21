@@ -2,6 +2,10 @@
 
 class WelcomeController < ApplicationController
   def index
+    if logged_in?
+      @message = Message.new
+      @message.user_id = current_user.id
+    end
     @messages = Message.all.order(created_at: :desc)
   end
 end

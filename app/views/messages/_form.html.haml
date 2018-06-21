@@ -10,6 +10,11 @@
             = error_message
 
   %title New message
+  %br
+  -if defined? @message.parent_id
+    %p
+      Parent ID: 
+      = @message.parent_id
   %p
     %strong by:
     = @message.user.username
