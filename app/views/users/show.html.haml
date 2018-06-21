@@ -1,18 +1,18 @@
 %h1 User Profile
 %h2 Personal Data:
-%p
+%address.center
   %strong User name: 
   = @user.username
   %br
   %strong Full name: 
   = @user.fullname
-
-%p
+  %br
   %strong Email: 
-  = @user.email
+  %a(href="mailto:#{@user.email}")= @user.email
 
 %h2 Type of Account:
-= @user.rights
+.center
+  %h3= @user.role.capitalize
 
 %h2 Create a new message:
 = form_with model: [ @user, @user.messages.build ], local: true do |f|
@@ -25,7 +25,7 @@
     = f.submit
 
 %h2 Message History:
-%table
+%table.table
   %tr
     %th Date
     %th Body
@@ -42,10 +42,4 @@
         data: {confirm: 'Are you sure you want to delete your message?',
         class: 'btn btn-danger'}
 
-%br
-= link_to 'Edit', edit_user_path
-= link_to 'Back', welcome_index_path
-= link_to 'Deactivate account', deactivate_user_path(@user),
-  method: :patch,
-  data: {confirm: 'Are you sure you want to deactivate your account?',
-  class: 'btn btn-danger'}
+= render 'user-footer'

@@ -8,8 +8,8 @@ class User < ApplicationRecord
   attr_accessor :password
 
   validates :fullname, presence: true, length: { in: 4..150 }
-  validates :username, length: { in: 4..20 }
-  validates :email, confirmation: true, length: { in: 4..150 }
+  validates :username, length: { in: 4..20 }, uniqueness: true
+  validates :email, confirmation: true, length: { in: 4..150 }, uniqueness: true
   validates :email_confirmation, presence: true, length: { in: 4..150 }, on: :create
   validates_format_of :email, with: EMAIL_REGEXP
   validates :password, confirmation: true, length: { in: 8..150 }, on: :create

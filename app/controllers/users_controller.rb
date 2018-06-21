@@ -4,6 +4,9 @@ require 'digest/sha1'
 
 class UsersController < ApplicationController
   before_action :find_user, only: %i[show edit update destroy deactivate]
+  before_action only: %i[deactivate destroy edit update] do |c|
+    c.send(:authorized?, current_user, params[:id])
+  end
 
   def index
     @users = User.all
@@ -22,7 +25,9 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      flash.now[:notice] = 'Successful account creation'
+      log_in @user
+      flash[:success] = 'Successful account creation'
+      flash[:success] = "Welcome to 42tter, #{@user.username}"
       redirect_to @user
     else
       flash.now[:danger] = 'Invalid account'
@@ -48,10 +53,11 @@ class UsersController < ApplicationController
     @user.messages.all.each(&:hide) if @user.messages.any?
     @user.active = false
     if @user.save
-      flash.now[:notice] = 'Successful deactivation'
+      log_out unless current_user.role == 'admin'
+      flash[:success] = 'Successful deactivation... :sad_panda:'
       redirect_to welcome_index_path
     else
-      flash.now[:danger] = 'Could not deactivate account'
+      flash[:danger] = 'Could not deactivate account'
       redirect_to @user
     end
   end

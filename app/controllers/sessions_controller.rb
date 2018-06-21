@@ -24,7 +24,7 @@ class SessionsController < ApplicationController
       @username_or_email = session_params[:username_or_email]
       render 'new'
     else
-      flash.now[:success] = "Welcome back, #{authorized_user.username}."
+      flash[:success] = "Welcome back, #{authorized_user.username}."
       log_in(authorized_user)
       redirect_to authorized_user
     end
@@ -35,7 +35,8 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    # logout
+    log_out
+    redirect_to root_url
   end
 
   private

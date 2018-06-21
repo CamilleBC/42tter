@@ -112,6 +112,33 @@ footer ul li {
   margin-left: 15px;
 }
 
+/* user footer */
+.user_footer {
+  margin-top: 45px;
+  padding-top: 5px;
+  border-top: 1px solid #eaeaea;
+  color: #777;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+  
+.user_footer a {
+  color: #555;
+}
+  
+.user_footer a:hover {
+  color: #222;
+}
+  
+.user_footer ul {
+  list-style: none;
+}
+  
+.user_footer ul li {
+  margin-left: 15px;
+}
+
 /* Timeline */
 .timeline {
     display: flex;
