@@ -18,28 +18,27 @@
 = form_with model: [ @user, @user.messages.build ], local: true do |f|
   %p
     %strong
-      = f.label :body
-      %br
       = f.text_area :body
   %p
     = f.submit
 
 %h2 Message History:
-%table.table
-  %tr
-    %th Date
-    %th Body
-    %th
-    %th
-
-  - @messages.all.each do |message|
+.history
+  %table.table
     %tr
-      %td= message.created_at
-      %td= message.body
-      %td= link_to 'Edit',  edit_user_message_path(@user, message)
-      %td= link_to 'Hide', hide_user_message_path(@user, message), 
-        method: :patch,
-        data: {confirm: 'Are you sure you want to delete your message?',
-        class: 'btn btn-danger'}
+      %th Date
+      %th Body
+      %th
+      %th
+  
+    - @messages.all.each do |message|
+      %tr
+        %td= message.created_at
+        %td= message.body
+        %td= link_to 'Edit',  edit_user_message_path(@user, message)
+        %td= link_to 'Hide', hide_user_message_path(@user, message), 
+          method: :patch,
+          data: {confirm: 'Are you sure you want to delete your message?',
+          class: 'btn btn-danger'}
 
 = render 'user-footer'

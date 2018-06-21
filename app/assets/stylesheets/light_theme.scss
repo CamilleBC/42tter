@@ -148,6 +148,8 @@ footer ul li {
     align-items: center;
     justify-content: center;
     text-align: center;
+    height: 70vh;
+    overflow-y: scroll;
 }
 
 .timeline_element {
@@ -162,6 +164,10 @@ footer ul li {
 .btn-timeline {
 }
 
+.history {
+    height: 40vh;
+    overflow-y: scroll;
+}
 /* forms */
 
 input, textarea, select, .uneditable-input {

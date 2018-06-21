@@ -8,7 +8,7 @@
   - else
     - @messages.each do |message|
       .timeline_element
-        = message.created_at
+        = message.created_at.strftime('%d/%m/%u at %H:%M')
         %br
       
         - if message.user.active
@@ -18,6 +18,5 @@
         = message.body
         - if logged_in?
           %br
-          = message.id
           = render partial: 'messages/form-inline', locals: {parent_id: message.id}
 
