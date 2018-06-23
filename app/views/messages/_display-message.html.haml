@@ -1,6 +1,9 @@
 - message = return_message(message_id)
-- if message.user.active
-  = succeed ':' do
-    = succeed link_to message.user.username, user_path(message.user) do
-      @
-= message.body
+- if message.nil?
+  'Message deleted'
+- else
+  - if message.user.active
+    = succeed ':' do
+      = succeed link_to message.user.username, user_path(message.user) do
+        @
+  = message.body
