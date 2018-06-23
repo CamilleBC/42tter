@@ -8,6 +8,10 @@ class UserPolicy
     @id = id
   end
 
+  def index
+	admin?
+  end
+
   def deactivate?
     owner_or_admin?
   end
@@ -17,12 +21,16 @@ class UserPolicy
   end
 
   def destroy?
-    @user.role == 'admin'
+	  admin?
   end
 
   private
 
   def owner_or_admin?
     @user.role == 'admin' || (@user.role == 'user' && @user.id == @id.to_i)
+  end
+
+  def admin?
+    @user.role == 'admin'
   end
 end

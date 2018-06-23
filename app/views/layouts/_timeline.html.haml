@@ -8,14 +8,15 @@
   - else
     - @messages.each do |message|
       .timeline_element
-        = message.created_at.strftime('%d/%m/%u at %H:%M')
+        = message.created_at.strftime('%d/%m/%y at %H:%M')
         %br
       
-        - if message.user.active
-          = succeed ':' do
-            = succeed link_to message.user.username, user_path(message.user) do
-              @
-        = message.body
+        = render partial: 'messages/display-message', locals: {message_id: message.id}
+        .timeline_reply
+          - unless message.parent_id.nil?
+            %br
+            in reply to
+            = render partial: 'messages/display-message', locals: {message_id: message.parent_id}
         - if logged_in?
           %br
           = render partial: 'messages/form-inline', locals: {parent_id: message.id}

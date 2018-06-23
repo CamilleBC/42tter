@@ -34,6 +34,10 @@ class User < ApplicationRecord
     false
   end
 
+  def delete_user_messages
+    messages.all.each(&:delete)
+  end
+
   def match_password?(login_password)
     encrypted_password == Digest::SHA1.hexdigest("Adding #{salt} to #{login_password}")
   end
@@ -44,9 +48,6 @@ class User < ApplicationRecord
     self.password = nil
   end
 
-  def delete_user_messages
-    messages.all.each(&:delete)
-  end
 
   def encrypt_password
     return unless password.present?
