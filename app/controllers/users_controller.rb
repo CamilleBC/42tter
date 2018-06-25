@@ -21,7 +21,9 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
-  def edit; end
+  def edit
+    session[:return_to] = request.referer
+end
 
   def create
     @user = User.new(user_params)
@@ -38,7 +40,7 @@ class UsersController < ApplicationController
 
   def update
     if @user.update(user_params)
-      redirect_back(fallback_location: @user)
+      redirect_to session[:return_to]
     else
       render 'edit'
     end
@@ -56,7 +58,7 @@ class UsersController < ApplicationController
     if @user.save
       log_out unless current_user.role == 'admin'
       flash[:success] = 'Successful deactivation... :sad_panda:'
-      redirect_to root_path
+      redirect_to session[:return_to]
     else
       flash[:danger] = 'Could not deactivate account'
       redirect_to @user

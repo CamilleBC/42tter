@@ -2,11 +2,11 @@
 
 class SessionsController < ApplicationController
   def index
-    # login form
+    # session home
   end
 
   def show
-    # session home
+    # placeholder
   end
 
   def new
@@ -26,7 +26,7 @@ class SessionsController < ApplicationController
     else
       flash[:success] = "Welcome back, #{authorized_user.username}."
       log_in(authorized_user)
-      redirect_to authorized_user
+      redirect_to root_url
     end
   end
 

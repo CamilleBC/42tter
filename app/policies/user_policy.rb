@@ -9,19 +9,23 @@ class UserPolicy
   end
 
   def index
-	admin?
-  end
-
-  def deactivate?
-    owner_or_admin?
+    admin?
   end
 
   def edit?
     owner_or_admin?
   end
 
+  def update?
+    owner_or_admin?
+  end
+
   def destroy?
-	  admin?
+    admin?
+  end
+
+  def deactivate?
+    owner_or_admin?
   end
 
   private

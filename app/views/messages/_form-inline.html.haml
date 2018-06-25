@@ -1,5 +1,5 @@
-= form_with model: [ current_user, current_user.messages.build ] do |f|
-  .form-inline
+.form-inline
+  = form_with model: [ current_user, current_user.messages.build ] do |f|
     - if defined? parent_id
       = f.hidden_field :parent_id, value: parent_id
     .input-group

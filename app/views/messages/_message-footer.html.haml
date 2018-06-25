@@ -1,0 +1,8 @@
+.message-footer
+  - if current_user.id == message.user.id
+    %td= link_to 'Edit', edit_user_message_path(current_user, message)
+  = render partial: 'messages/form-inline', locals: {parent_id: message.id}
+  - unless message.parent_id.nil?
+    %br
+    in reply to
+    = render partial: 'messages/display-message', locals: {message_id: message.parent_id}

@@ -15,18 +15,20 @@ class MessagesController < ApplicationController
     @message = Message.new
   end
 
-  def edit; end
+  def edit
+    session[:return_to] = request.referer
+ end
 
   def create
     @user = User.find(params[:user_id])
     @message = @user.messages.create(message_params)
-    redirect_back(fallback_location: root_path)
+    redirect_to session[:return_to]
   end
 
   def update
     @user = User.find(params[:user_id])
     if @message.update(message_params)
-      redirect_back(fallback_location: root_path)
+      redirect_to session[:return_to]
     else
       render :edit
     end
@@ -35,7 +37,7 @@ class MessagesController < ApplicationController
   def destroy
     @user = User.find(params[:user_id])
     @message.destroy
-    redirect_back(fallback_location: root_path)
+    redirect_to root_path
   end
 
   def hide
