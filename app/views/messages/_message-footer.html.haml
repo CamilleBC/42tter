@@ -1,4 +1,9 @@
 .message-footer.small
   - if current_user.id == message.user.id
     = link_to 'Edit', edit_user_message_path(current_user, message)
+    \  ·   
+    = link_to 'Hide', hide_user_message_path(current_user, message), 
+        method: :patch,
+        data: {confirm: 'Are you sure you want to delete your message?',
+        class: 'btn btn-danger'}
   = render partial: 'messages/form-inline', locals: {parent_id: message.id}

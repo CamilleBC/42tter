@@ -3,7 +3,7 @@
     %h1 This is the timeline, bitch! 
     - if logged_in?
       .center
-        = render 'messages/form-inline'
+      = render 'messages/form-inline'
     - if @messages.empty?
       I'm so alone...
     - else

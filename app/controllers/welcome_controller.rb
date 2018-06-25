@@ -6,6 +6,6 @@ class WelcomeController < ApplicationController
       @message = Message.new
       @message.user_id = current_user.id
     end
-    @messages = Message.all.order(created_at: :desc)
+    @messages = Message.all.order(created_at: :desc).includes(:user)
   end
 end
