@@ -2,13 +2,18 @@
   .timeline
     %h1 This is the timeline, bitch! 
     - if logged_in?
-      %br
-      = render 'messages/form-inline'
+      .center
+        = render 'messages/form-inline'
     - if @messages.empty?
       I'm so alone...
     - else
+      %ul
       - @messages.each do |message|
-        .timeline_element
-          = render partial: 'messages/display-message', locals: {message_id: message.id}
-        - if logged_in?
-          = render partial: 'messages/message-footer', locals: {message: message}
+        %li
+          .timeline_element
+            .timeline_reply
+              - parent = return_message(message.parent_id)
+              = render partial: 'messages/display-message', locals: {message: parent}
+            = render partial: 'messages/display-message', locals: {message: message}
+            - if logged_in?
+              = render partial: 'messages/message-footer', locals: {message: message}

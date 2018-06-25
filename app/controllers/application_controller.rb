@@ -17,7 +17,7 @@ class ApplicationController < ActionController::Base
   end
 
   def check_logged_status
-    return true if logged_in?
+    return true if logged_in? && current_user.active?
     flash[:danger] = "Please #{view_context.link_to('log in', login_path)} or #{view_context.link_to('sign up', signup_path)} to see that page."
     redirect_back(fallback_location: root_path)
   end

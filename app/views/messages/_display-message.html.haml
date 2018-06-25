@@ -1,10 +1,5 @@
-- message = return_message(message_id)
-- if message.nil?
-  'Message deleted'
-- else
-  -# - if message.user.active
-    = succeed ' ⧖ ' do
-      = succeed link_to message.user.username, user_path(message.user) do
-        @
-  = render partial: 'messages/message-header', locals: {message: message}
-  = message.body
+- unless message.nil?
+  %p
+    .small
+      = render partial: 'messages/message-header', locals: {message: message}
+    = message.body

@@ -23,6 +23,10 @@ class SessionsController < ApplicationController
       flash.now[:danger] = 'Invalid username or password.'
       @username_or_email = session_params[:username_or_email]
       render 'new'
+    elsif !authorized_user.active?
+      flash.now[:danger] = "Account deactivated: please #{view_context.link_to('contact', 'mailto:admin@42tter.io')} an admin"
+      @username_or_email = session_params[:username_or_email]
+      render 'new'
     else
       flash[:success] = "Welcome back, #{authorized_user.username}."
       log_in(authorized_user)

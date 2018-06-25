@@ -1,7 +1,9 @@
-.message-header
+- if message
   - if message.user.active
-    = succeed ' 🕐 ' do
-      = succeed link_to message.user.username, user_path(message.user) do
-        @
+    = succeed link_to message.user.username, user_path(message.user) do
+      @
+  - else
+    [user not active]
+  🕐
   = return_date(message)
 

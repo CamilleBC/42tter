@@ -1,9 +1,9 @@
 /* mixins... */
 
 @mixin box_sizing {
-  -moz-box-sizing:    border-box;
-  -webkit-box-sizing: border-box;
-  box-sizing:         border-box;
+	-moz-box-sizing:    border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing:         border-box;
 }
 
 /* typography */
@@ -12,131 +12,131 @@
 @import url(https://fonts.googleapis.com/css?family=Noto+Sans:400,700);
 
 * {
-    font-family: "Noto Sans";
+	font-family: "Noto Sans";
 }
 
 h1, h2, h3, h4, h5, h6 {
-  line-height: 1;
+	line-height: 1;
 }
-  
+
 h1 {
-  font-size: 3em;
-  letter-spacing: -2px;
-  margin-bottom: 30px;
-  text-align: center;
+	font-size: 3em;
+	letter-spacing: -2px;
+	margin-bottom: 30px;
+	text-align: center;
 }
-  
+
 h2 {
-  font-size: 1.2em;
-  letter-spacing: -1px;
-  margin-bottom: 30px;
-  text-align: center;
-  font-weight: normal;
-  color: #777;
+	font-size: 1.2em;
+	letter-spacing: -1px;
+	margin-bottom: 30px;
+	text-align: center;
+	font-weight: normal;
+	color: #777;
 }
-  
+
 p {
-  font-size: 1.1em;
-  line-height: 1.7em;
+	font-size: 1.1em;
+	line-height: 1.7em;
 }
 
 /* main style */
 
 body {
-  padding-top: 60px;
-  font-family: "monospace";
+	padding-top: 60px;
+	font-family: "monospace";
 }
-  
+
 section {
-  overflow: auto;
+	overflow: auto;
 }
-  
+
 textarea {
-  resize: vertical;
+	resize: vertical;
 }
-  
+
 .center {
-  text-align: center;
+	text-align: center;
 }
-  
+
 .center h1 {
-  margin-bottom: 10px;
+	margin-bottom: 10px;
 }
 
 /* header */
 
 #logo {
-  float: left;
-  margin-right: 10px;
-  font-size: 1.7em;
-  color: #fff;
-  text-transform: uppercase;
-  letter-spacing: -1px;
-  padding-top: 9px;
-  font-weight: bold;
+	float: left;
+	margin-right: 10px;
+	font-size: 1.7em;
+	color: #fff;
+	text-transform: uppercase;
+	letter-spacing: -1px;
+	padding-top: 9px;
+	font-weight: bold;
 }
-  
+
 #logo:hover {
-  color: #fff;
-  text-decoration: none;
+	color: #fff;
+	text-decoration: none;
 }
 
 /* footer */
 
 footer {
- margin-top: 45px;
- padding-top: 5px;
- border-top: 1px solid #eaeaea;
- color: #777;
+	margin-top: 45px;
+	padding-top: 5px;
+	border-top: 1px solid #eaeaea;
+	color: #777;
 }
-  
+
 footer a {
-  color: #555;
+	color: #555;
 }
-  
+
 footer a:hover {
-  color: #222;
+	color: #222;
 }
-  
+
 footer small {
-  float: left;
+	float: left;
 }
-  
+
 footer ul {
-  float: right;
-  list-style: none;
+	float: right;
+	list-style: none;
 }
-  
+
 footer ul li {
-  float: left;
-  margin-left: 15px;
+	float: left;
+	margin-left: 15px;
 }
 
 /* user footer */
 .user_footer {
-  margin-top: 45px;
-  padding-top: 5px;
-  border-top: 1px solid #eaeaea;
-  color: #777;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+	margin-top: 45px;
+	padding-top: 5px;
+	border-top: 1px solid #eaeaea;
+	color: #777;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
-  
+
 .user_footer a {
-  color: #555;
+	color: #555;
 }
-  
+
 .user_footer a:hover {
-  color: #222;
+	color: #222;
 }
-  
+
 .user_footer ul {
-  list-style: none;
+	list-style: none;
 }
-  
+
 .user_footer ul li {
-  margin-left: 15px;
+	margin-left: 15px;
 }
 
 .welcome_index {
@@ -144,54 +144,53 @@ footer ul li {
 }
 
 .welcome_login {
-    display: flex;
+	display: flex;
 	max-width: 20vw;
 }
 
 /* Timeline */
 .timeline {
-    display: flex;
-    padding: 0;
-    margin: 0;
-    flex-direction: column;
-    align-items: center;
-    height: 70vh;
-    overflow-y: scroll;
-    overflow-x: scroll;
+	display: flex;
+	flex-direction: column;
+	height: 70vh;
+	overflow-y: scroll;
+	overflow-x: scroll;
+	list-style-type: none;
 }
 
 .timeline_element {
-    padding: 1em;
-    margin: 1em;
-    text-align: center;
-    color: #999;
-    background-color: #333;
-    border-radius: 10%;
+	display:  block;
+	color: #999;
+	background: rgba(90, 92, 92, 0.2);
+}
+.timeline_reply {
+	margin-left: 3em;
+	color: #bbb;
 }
 
 .btn-timeline {
 }
 
 .history {
-    height: 40vh;
-    overflow-y: scroll;
+	height: 40vh;
+	overflow-y: scroll;
 }
 /* forms */
 
 input, textarea, select, .uneditable-input {
-  border: 1px solid #bbb;
-  width: 100%;
-  margin-bottom: 15px;
-  @include box_sizing;
+	border: 1px solid #bbb;
+	width: 100%;
+	margin-bottom: 15px;
+	@include box_sizing;
 }
 
 .btn {
-  border: 1px solid #bbb;
-  margin-left: 15px;
-  margin-bottom: 5px;
-  @include box_sizing;
+	border: 1px solid #bbb;
+	margin-left: 15px;
+	margin-bottom: 5px;
+	@include box_sizing;
 }
 
 input {
-  height: auto important;
+	height: auto important;
 }

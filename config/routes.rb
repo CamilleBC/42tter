@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   resources :sessions
   resources :users do
     patch 'deactivate', on: :member
+    patch 'reactivate', on: :member
     resources :messages do
       patch 'hide', on: :member
     end

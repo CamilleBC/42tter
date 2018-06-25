@@ -28,6 +28,10 @@ class UserPolicy
     owner_or_admin?
   end
 
+  def reactivate?
+    admin?
+  end
+
   private
 
   def owner_or_admin?
