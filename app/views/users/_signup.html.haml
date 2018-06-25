@@ -1,46 +1,47 @@
-= form_with model: @user, local: true do |f|
-  - if @user.errors.any?
-    #error_explanation
-      %h2
-        = pluralize(@user.errors.count, "error")
-        prohibited this account to be created:
-        %ul
-          - @user.errors.full_messages.each do |error_message|
-            %li
-              = error_message
-
-  %p
-    %strong
-      = f.label :fullname
-      %br
-      = f.text_field :fullname
-      %br
-      = f.label :username
-      %br
-      = f.text_field :username
-
-  %p
-    %strong
-      = f.label :email
-      %br
-      = f.email_field :email
-      %br
-      = f.label :email_confirmation
-      %br
-      = f.email_field :email_confirmation
-
-  %p
-    %strong
-      = f.label :password
-      %br
-      = f.password_field :password
-      %br
-      = f.label :password_confirmation
-      %br
-      = f.password_field :password_confirmation
-  %p
-    = f.submit
-
-
-
-
+.container
+  = form_with model: @user, local: true do |f|
+    - if @user.errors.any?
+      #error_explanation
+        %h2
+          = pluralize(@user.errors.count, "error")
+          prohibited this account to be created:
+          %ul
+            - @user.errors.full_messages.each do |error_message|
+              %li
+                = error_message
+  
+    %p
+      %strong
+        = f.label :fullname
+        %br
+        = f.text_field :fullname
+        %br
+        = f.label :username
+        %br
+        = f.text_field :username
+  
+    %p
+      %strong
+        = f.label :email
+        %br
+        = f.email_field :email
+        %br
+        = f.label :email_confirmation
+        %br
+        = f.email_field :email_confirmation
+  
+    %p
+      %strong
+        = f.label :password
+        %br
+        = f.password_field :password
+        %br
+        = f.label :password_confirmation
+        %br
+        = f.password_field :password_confirmation
+    %p
+      = f.submit
+  
+  
+  
+  

@@ -2,5 +2,9 @@
 %h2 If you want to access the next-next-next-next-next-next-next-next-next-next-next-next-next-next-next-next-next-next-next-next-next-next-next-next-next-next-next-next-next-next-next-next-next-next-next-next-next-next-next-next-next-next generation of messenger services, please log-in or subscribe!
 
 %br
-= render 'layouts/timeline'
+.welcome_index
+  - unless logged_in?
+    .welcome_login
+      = render 'sessions/login'
+  = render 'layouts/timeline'
 = render 'layouts/footer'

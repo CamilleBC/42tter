@@ -29,7 +29,7 @@ class UsersController < ApplicationController
       log_in @user
       flash[:success] = 'Successful account creation'
       flash[:success] = "Welcome to 42tter, #{@user.username}"
-      redirect_to @user
+      redirect_to root_path
     else
       flash.now[:danger] = 'Invalid account'
       render 'new'
@@ -38,7 +38,7 @@ class UsersController < ApplicationController
 
   def update
     if @user.update(user_params)
-      redirect_to @user
+      redirect_back(fallback_location: @user)
     else
       render 'edit'
     end
@@ -47,7 +47,7 @@ class UsersController < ApplicationController
   def destroy
     @user.delete_user_messages
     @user.delete
-    redirect_to users_path
+    redirect_back(fallback_location: users_path)
   end
 
   def deactivate
@@ -56,7 +56,7 @@ class UsersController < ApplicationController
     if @user.save
       log_out unless current_user.role == 'admin'
       flash[:success] = 'Successful deactivation... :sad_panda:'
-      redirect_to welcome_index_path
+      redirect_to root_path
     else
       flash[:danger] = 'Could not deactivate account'
       redirect_to @user

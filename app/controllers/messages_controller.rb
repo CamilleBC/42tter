@@ -20,13 +20,13 @@ class MessagesController < ApplicationController
   def create
     @user = User.find(params[:user_id])
     @message = @user.messages.create(message_params)
-    redirect_to user_path(@user)
+    redirect_back(fallback_location: root_path)
   end
 
   def update
     @user = User.find(params[:user_id])
     if @message.update(message_params)
-      redirect_to @user
+      redirect_back(fallback_location: root_path)
     else
       render :edit
     end
@@ -35,12 +35,12 @@ class MessagesController < ApplicationController
   def destroy
     @user = User.find(params[:user_id])
     @message.destroy
-    redirect_to @user
+    redirect_back(fallback_location: root_path)
   end
 
   def hide
     @message.hide
-    redirect_to @message.user
+    redirect_back(fallback_location: root_path)
   end
 
   private

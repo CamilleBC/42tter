@@ -1,9 +1,11 @@
 %footer.user_footer
   %nav
     %ul{class: 'navbar navbar-nav'}
-      %li= link_to 'Edit', edit_user_path
+      - if @user.id == current_user.id
+        %li= link_to 'Edit', edit_user_path
       %li= link_to 'Back', :back
-      %li= link_to 'Deactivate account', deactivate_user_path(@user),
-        method: :patch,
-        data: {confirm: 'Are you sure you want to deactivate your account?',
-        class: 'btn btn-danger'}
+      - if @user.id == current_user.id
+        %li= link_to 'Deactivate account', deactivate_user_path(@user),
+          method: :patch,
+          data: {confirm: 'Are you sure you want to deactivate your account?',
+          class: 'btn btn-danger'}
