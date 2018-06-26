@@ -3,6 +3,8 @@
 require 'digest/sha1'
 
 class UsersController < ApplicationController
+  include SessionManager
+
   before_action :check_logged_status, except: %i[create new]
   before_action :find_user, only: %i[show edit update destroy deactivate reactivate]
   before_action only: %i[deactivate destroy edit update] do |c|
@@ -29,7 +31,6 @@ end
     @user = User.new(user_params)
     if @user.save
       log_in @user
-      flash[:success] = 'Successful account creation'
       flash[:success] = "Welcome to 42tter, #{@user.username}"
       redirect_to root_path
     else

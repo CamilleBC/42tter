@@ -1,8 +1,10 @@
 # frozen_string_literal: true
 
 class SessionsController < ApplicationController
+  include SessionManager
+
   def index
-    # session home
+    # placeholder
   end
 
   def show
@@ -25,13 +27,13 @@ class SessionsController < ApplicationController
       render 'new'
     else
       flash[:success] = "Welcome back, #{authorized_user.username}."
-      log_in(authorized_user)
+      log_in authorized_user
       redirect_to root_url
     end
   end
 
   def update
-    # session settings
+    # placeholder
   end
 
   def destroy

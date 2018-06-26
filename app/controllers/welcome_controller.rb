@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class WelcomeController < ApplicationController
+  include SessionManager
+
   def index
     if logged_in?
       @message = Message.new
