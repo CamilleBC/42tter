@@ -18,13 +18,9 @@ class SessionsController < ApplicationController
   end
 
   def create
-    authorized_user = User.authenticate(session_params[:username_or_email], session_params[:login_password])
+    authorized_user = UserAuthenticator.new(session_params[:username_or_email]).authenticate(session_params[:login_password])
     if authorized_user.nil?
-      flash.now[:danger] = 'Invalid username or password.'
-      @username_or_email = session_params[:username_or_email]
-      render 'new'
-    elsif !authorized_user.active?
-      flash.now[:danger] = "Account deactivated: please #{view_context.link_to('contact', 'mailto:admin@42tter.io')} an admin"
+      flash.now[:danger] = unauthorized_flash(authorized_user.active?)
       @username_or_email = session_params[:username_or_email]
       render 'new'
     else
@@ -47,5 +43,10 @@ class SessionsController < ApplicationController
 
   def session_params
     params.require(:session).permit(:username_or_email, :login_password)
+  end
+
+  def unauthorized_flash(active)
+    return 'Invalid username or password.' if active
+    "Account deactivated: please #{view_context.link_to('contact', 'mailto:admin@42tter.io')} an admin"
   end
 end
